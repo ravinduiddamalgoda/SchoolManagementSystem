@@ -1,0 +1,49 @@
+﻿@page
+@model prj_it.Pages.teacher_pages.assignment.IndexModel
+@{
+}
+
+<a type="button" class="btn-outline-success btn-lg" href="/teacher_pages/assignment/add_asgn">+ Add Assignment</a>
+<a class="btn btn-info btn-md" href="/teacher_pages/main_t">Home</a>
+<br />
+
+@if (Model.err != "")
+{
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.err</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Assignment ID</th>
+            <th>Assignment Path</th>
+            <th>Student id</th>
+            <th>Teacher id</th>
+            <th>Submission Date</th>
+            <th>Status</th>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model.as_list)
+        {
+            <tr>
+                <td>@data.a_id</td>
+                <td>@data.a_path</td>
+                <td>@data.s_id</td>
+                <td>@data.t_id</td>
+                <td>@data.sub_date</td>
+                <td>@data.status</td>
+                <td>
+                
+                    <a class="btn btn-danger btn-sm" href="/teacher_pages/assignment/delete_a?id=@data.a_id">Delete</a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>

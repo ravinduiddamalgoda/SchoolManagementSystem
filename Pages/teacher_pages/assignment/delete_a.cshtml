@@ -1,0 +1,44 @@
+﻿@page
+
+@using System.Data.SqlClient;
+@{
+    string err = "";
+    string suc = "";
+    string id = Request.Query["id"];
+    if (string.IsNullOrEmpty(id))
+    {
+        err = "NO Val";
+        return;
+
+
+    }
+    try
+    {
+
+        String connetionString = "Data Source=DESKTOP-73R3HS1\\SQLEXPRESS;Initial Catalog=school;Integrated Security=True";
+        using (SqlConnection conn = new SqlConnection(connetionString))
+        {
+            conn.Open();
+
+
+            string select_st = "DELETE FROM assignment WHERE a_id = '" + id + "'";
+            using (SqlCommand cmd = new SqlCommand(select_st, conn))
+            {
+                cmd.ExecuteReader();
+
+            }
+
+
+
+        }
+
+
+
+    }
+    catch (Exception ex)
+    {
+        err = ex.Message;
+    }
+
+    Response.Redirect("/teacher_pages/assingment/index");
+}

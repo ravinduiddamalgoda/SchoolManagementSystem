@@ -1,0 +1,57 @@
+﻿@page
+@model prj_it.Pages.teacher_pages.edit_stModel
+@{
+}
+
+<h1> Student Edit Page</h1>
+<br />
+@if (Model.err != "")
+{
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.err</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<form method="POST">
+    <input type ="hidden" value="@Model.st.id" name="id">
+
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example3" class="form-control" name="name" value="@Model.st.name" />
+        <label class="form-label" for="form3Example3">Name</label>
+    </div>
+
+    
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example4" class="form-control" name="age" value="@Model.st.age" />
+        <label class="form-label" for="form3Example4">Age</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example4" class="form-control" name="class" value="@Model.st.clz" />
+        <label class="form-label" for="form3Example4">Class</label>
+    </div>
+
+     <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <input type="email" id="form3Example1" class="form-control" name="email" value="@Model.st.email" />
+                <label class="form-label" for="form3Example1">Email</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <input type="text" id="form3Example2" class="form-control" name="password" value="@Model.st.pwd" />
+                <label class="form-label" for="form3Example2">Password</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"><button class="btn btn-primary btn-lg" type="submit">Submit</button></div>
+        <div class="col"><a class="btn btn-outline-primary btn-lg" asp-page="/teacher_pages/main_t">Cancel</a></div>
+
+    </div>
+    
+</form>

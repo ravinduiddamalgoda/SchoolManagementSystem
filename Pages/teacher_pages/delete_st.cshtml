@@ -1,0 +1,76 @@
+﻿@page
+
+
+
+@using System.Data.SqlClient;
+@{
+    string err = "";
+    string suc = "";
+    string id = Request.Query["id"];
+    if (string.IsNullOrEmpty(id))
+    {
+        err = "NO Val";
+        return;
+
+
+    }
+    try
+    {
+
+        String connetionString = "Data Source=DESKTOP-73R3HS1\\SQLEXPRESS;Initial Catalog=school;Integrated Security=True;MultipleActiveResultSets =true";
+        using (SqlConnection conn = new SqlConnection(connetionString))
+        {
+            conn.Open();
+
+            
+            string delete_st = "DELETE FROM student WHERE ID = '" + id + "'";
+            string delete_ass = "DELETE FROM assignment WHERE s_id = '" + id + "'";
+
+            using (SqlCommand cmd = new SqlCommand(delete_ass, conn))
+            {
+                cmd.ExecuteReader();
+                //cmd.Cancel();
+            }
+            
+    
+            using (SqlCommand cmd1 = new SqlCommand(delete_st, conn))
+            {
+                cmd1.ExecuteReader();
+
+            }
+            
+
+
+        }
+
+
+
+    }
+    catch (Exception ex)
+    {
+        err = ex.Message;
+    }
+    Response.Redirect("/teacher_pages/main_t");
+    //Response.Redirect("/teacher_pages/main_t");
+}
+
+
+@if (err != "")
+{
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@err</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (suc != "")
+{
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@suc</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+

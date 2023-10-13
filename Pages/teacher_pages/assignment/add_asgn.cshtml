@@ -1,0 +1,58 @@
+﻿@page
+@model prj_it.Pages.teacher_pages.assignment.add_asgnModel
+@{
+}
+
+
+@if (Model.err != "")
+{
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.err</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<h1> Student Create Page</h1>
+<br />
+
+<form method="POST">
+
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example3" class="form-control" name="a_path" />
+        <label class="form-label" for="form3Example3">Assignmennt Path</label>
+    </div>
+
+
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example4" class="form-control" name="s_id_in" />
+        <label class="form-label" for="form3Example4">Student ID</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example4" class="form-control" name="t_id_in" />
+        <label class="form-label" for="form3Example4">Teacher ID</label>
+    </div>
+
+    <div class="form-outline mb-4">
+        <input type="text" id="form3Example4" class="form-control" name="sub_date" />
+        <label class="form-label" for="form3Example4">submission date</label>
+    </div>
+
+   
+
+    @if (Model.suc != "")
+    {
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@Model.suc</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    }
+
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+
+</form>

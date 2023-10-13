@@ -1,0 +1,49 @@
+﻿@page
+@model prj_it.Pages.teacher_pages.main_tModel
+@{
+}
+
+
+<h1> Wellcome to Teachers Page</h1>
+<br/>
+<div style="display:flex; justify-content:flex-end; ">
+    <a class="btn btn-outline-danger  btn-md" style="text-decoration: none;" href="../login_pages/teacher_login">LOGOUT</a>
+
+</div>
+<a type="button" class="btn-success btn-lg" href="/teacher_pages/assignment/index">Assignment</a>
+<br />
+<h2>Students Details</h2>
+<a type="button" class="btn-outline-success btn-lg" href="/teacher_pages/create_st">+ Add Student</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Class</th>
+            <th>Password</th>
+            <th>Email</th>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model.st_list)
+        {
+            <tr>
+                <td>@data.id</td>
+                <td>@data.name</td>
+                <td>@data.age</td>
+                <td>@data.clz</td>
+                <td>@data.pwd</td>
+                <td>@data.email</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/teacher_pages/edit_st?id=@data.id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/teacher_pages/delete_st?id=@data.id">Delete</a>
+                </td>
+            </tr>
+            
+        }
+
+    </tbody>
+</table>
+

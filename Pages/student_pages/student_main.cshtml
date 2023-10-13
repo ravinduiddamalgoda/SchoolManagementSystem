@@ -1,0 +1,56 @@
+﻿@page
+@model prj_it.Pages.student_pages.student_mainModel
+@{
+}
+
+
+<h1 style="color:blueviolet"> WellCome, @HttpContext.Session.GetString("name")</h1>
+<div style="display:flex; justify-content:flex-end; ">
+    <a class="btn btn-outline-danger  btn-md" style="text-decoration: none;" href="../login_pages/student_login">LOGOUT</a>
+
+</div>
+<br/>
+
+
+<p style="font-size: 20px;"> View Your Assignments</p>
+
+
+
+@if (Model.err != "")
+{
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.err</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Assignment ID</th>
+            <th>Assignment Path</th>
+            <th>Teacher id</th>
+            <th>Submission Date</th>
+            <th>Status</th>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model.as_list)
+        {
+            <tr>
+                <td>@data.a_id</td>
+                <td>@data.a_path</td>
+                <td>@data.t_id</td>
+                <td>@data.sub_date</td>
+                <td>@data.status</td>
+                <td>
+
+                    <a class="btn btn-warning  btn-sm" href="/student_pages/update?id=@data.a_id">Update Done</a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
